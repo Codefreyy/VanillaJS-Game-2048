@@ -17,9 +17,6 @@ body {
 }
 
 #game-board {
-  --grid-size: 4;
-  --cell-size: 20vmin;
-  --cell-gap: 2vmin;
   display: grid;
   /* "v"代表视口（viewport），而"min"表示选择视口的宽度和高度中较小的那个。 1vmin等于视口宽度和高度中较小值的1%。
   The "v" stands for viewport and the "min" selects the smaller of the width and height of the viewport. 1vmin is equal to 1% of the smaller of the width and height of the viewport.
