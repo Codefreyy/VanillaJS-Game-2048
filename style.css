@@ -35,7 +35,7 @@ body {
   border-radius: 1vmin;
 }
 
-.title {
+.tile {
   --x: 2;
   --y: 3;
   --background-lightness: 80%;
