@@ -39,8 +39,8 @@ body {
 }
 
 .title {
-  --x: 1;
-  --y: 2;
+  --x: 2;
+  --y: 3;
   --background-lightness: 80%;
   --text-lightness: 20%;
   position: absolute;
@@ -58,4 +58,16 @@ body {
   /* 色相（Hue）、饱和度（Saturation）和亮度（Lightness） 200 hue is a blue type color */
   background-color: hsl(200, 50%, var(--background-lightness));
   color: hsl(200, 25%, var(--text-lightness));
+  /*  a slow start and end with acceleration in the middle */
+  animation: show 200ms ease-in-out;
+  /*  define a transition effect when a CSS property changes from one value to another */
+  transition: 100ms ease-in-out;
+}
+
+/* create keyframe animations in CSS, 0% represents the starting state of the animation */
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    transform: scale(0);
+  }
 }
