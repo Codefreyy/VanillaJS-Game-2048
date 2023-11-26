@@ -44,16 +44,29 @@ function moveUp() {
   slideTiles(grid.cellsByColumn)
 }
 
+function moveDown() {
+  slideTiles(grid.cellsByColumn.map((i) => [...i].reverse()))
+}
+
+function moveLeft() {
+  slideTiles(grid.cellsByRow)
+}
+
+function moveRight() {
+  slideTiles(grid.cellsByRow.map((i) => [...i].reverse()))
+}
+
 function slideTiles(cells) {
   // cells is an array of array, each array is a column
-  cells.forEach((column) => {
-    // because when i = 0, there is no room to move up?
-    for (let i = 1; i < column.length; i++) {
-      const cell = column[i]
+  cells.forEach((group) => {
+    // if it's group by column, we start from 1, because there is no room to move up when position is 0
+    for (let i = 1; i < group.length; i++) {
+      const cell = group[i]
       if (cell.tile == null) continue
       let lastValidCell
+      // for every cell in the group, we check the space for it to move
       for (let j = i - 1; j >= 0; j--) {
-        const moveToCell = column[j]
+        const moveToCell = group[j]
         if (!moveToCell.canAccept(cell.tile)) break
         lastValidCell = moveToCell
       }

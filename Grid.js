@@ -6,15 +6,26 @@ export default class Grid {
   // private variable
   #cells
   #cellsByColumn
+  #cellsByRow
 
   get #emptyCells() {
     return this.#cells.filter((cell) => cell.tile !== null)
   }
 
   get cellsByColumn() {
+    // 一列一列组装成二维数组
     return this.#cells.reduce((cellGrid, cell) => {
       cellGrid[cell.x] = cellGrid[cell.x] || []
       cellGrid[cell.x][cell.y] = cell
+      return cellGrid
+    }, [])
+  }
+
+  get cellsByRow() {
+    // 一行一行组装成二维数组
+    return this.#cells.reduce((cellGrid, cell) => {
+      cellGrid[cell.y] = cellGrid[cell.y] || []
+      cellGrid[cell.y][cell.x] = cell
       return cellGrid
     }, [])
   }
@@ -65,8 +76,10 @@ class Cell {
   }
 
   set mergeTile(value) {
+    // 给mergeTitle当前cell的值
     this.#mergeTile = value
     if (!value) return
+    // 给mergeTitle当前cell的位置
     this.#mergeTile.x = this.#x
     this.#mergeTile.y = this.#y
   }
