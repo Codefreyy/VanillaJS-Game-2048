@@ -59,10 +59,22 @@ async function handleInput(e) {
   const newTile = new Tile(gameBoard)
   grid.randomEmptyCell().tile = newTile
 
-  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
-    newTile.waitForTransition(true)
-  }
+  let max = 2
+  grid.cellsByColumn.forEach((g) => {
+    g.forEach((c) => {
+      if (c.tile && c.tile.value > max) {
+        max = c.tile.value
+      }
+    })
+  })
+  console.log("max", max)
 
+  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+    newTile.waitForTransition(true).then(() => {
+      alert(`Sorry, you lose. The score is ${max}. Keep up!`)
+    })
+    return
+  }
   setupInput()
 }
 
