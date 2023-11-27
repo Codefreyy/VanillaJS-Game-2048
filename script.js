@@ -7,7 +7,6 @@ const grid = new Grid(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 setupInput()
-console.log(1, grid.cellsByColumn)
 
 function setupInput() {
   // window is the browser global object
@@ -17,7 +16,6 @@ function setupInput() {
 
 async function handleInput(e) {
   // e.key 用于获取触发事件的按键的标识符
-  console.log(e.key)
   switch (e.key) {
     case "ArrowUp":
       if (!canMoveUp()) {
@@ -59,17 +57,15 @@ async function handleInput(e) {
   const newTile = new Tile(gameBoard)
   grid.randomEmptyCell().tile = newTile
 
-  let max = 2
-  grid.cellsByColumn.forEach((g) => {
-    g.forEach((c) => {
-      if (c.tile && c.tile.value > max) {
-        max = c.tile.value
-      }
-    })
-  })
-  console.log("max", max)
-
   if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+    let max = 2
+    grid.cellsByColumn.forEach((g) => {
+      g.forEach((c) => {
+        if (c.tile && c.tile.value > max) {
+          max = c.tile.value
+        }
+      })
+    })
     newTile.waitForTransition(true).then(() => {
       alert(`Sorry, you lose. The score is ${max}. Keep up!`)
     })
