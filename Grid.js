@@ -12,6 +12,10 @@ export default class Grid {
     return this.#cells.filter((cell) => cell.tile !== null)
   }
 
+  get cells() {
+    return this.#cells
+  }
+
   get cellsByColumn() {
     // 一列一列组装成二维数组
     return this.#cells.reduce((cellGrid, cell) => {
@@ -98,6 +102,14 @@ class Cell {
       (this.mergeTile == null && this.#tile.value == tile.value)
     )
   }
+
+  mergeTiles() {
+    if (this.tile == null || this.mergeTile == null) return
+    this.tile.value = this.tile.value + this.mergeTile.value
+    this.mergeTile.remove()
+    this.mergeTile = null
+  }
+
   constructor(cellElement, x, y) {
     this.#cellElement = cellElement
     this.#x = x
