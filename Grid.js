@@ -9,7 +9,7 @@ export default class Grid {
   #cellsByRow
 
   get #emptyCells() {
-    return this.#cells.filter((cell) => cell.tile !== null)
+    return this.#cells.filter((cell) => cell.tile == null)
   }
 
   get cells() {
