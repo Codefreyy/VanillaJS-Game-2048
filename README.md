@@ -10,26 +10,27 @@ Here is how you can run the game in your local environment.
 1. Clone the repository to your local machine. 
 
 ```bash
-git clone https://github.com/yourusername/2048-game.git
+git clone https://github.com/Codefreyy/VanillaJS-Game-2048.git
 ```
 
 2. Navigate to the project folder.
 
 ```bash
-cd 2048-game
+cd VanillaJS-Game-2048
 ```
 
-3. Open the `index.html` file in your browser to start the game.
+3. Open the `index.html` file in your browser or open the live server to start the game. 
 
 ## Game Rules
-
+ 
 1. Use your arrow keys to move the tiles. Tiles with the same number merge into one when they touch.
+        <img width="480" alt="image" src="https://github.com/Codefreyy/VanillaJS-Game-2048/assets/104683968/987977eb-1369-4e64-8e53-68e9bb876993">
 
-2. The game is over when the board is full and there are no more moves left.
+4. The game is over when the board is full and there are no more moves left.
 
-3. Combine tiles of the same number in an attempt to create a tile with the value of 2048. 
+5. Combine tiles of the same number in an attempt to create a tile with the value of 2048. 
 
-4. The game is over when there are no valid ways for you to move the tiles.
+6. The game is over when there are no valid ways for you to move the tiles.
 
 ## Project Structure
 
