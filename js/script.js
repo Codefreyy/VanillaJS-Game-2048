@@ -5,9 +5,9 @@ const gameBoard = document.getElementById("game-board")
 const grid = new Grid(gameBoard)
 
 // scoreboard
-let max = 2
+let max = -Infinity
+
 const score = document.getElementById("score")
-score.textContent = max
 
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
@@ -157,29 +157,23 @@ function slideTiles(cells) {
 }
 
 // modal
-const openModalButtons = document.querySelectorAll("[data-modal-target]")
-const closeModalButtons = document.querySelectorAll("[data-close-button]")
+const openModalButton = document.querySelector("[data-modal-target]")
+const closeModalButton = document.querySelector("[data-close-button]")
 const overlay = document.getElementById("overlay")
 
-openModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = document.querySelector(button.dataset.modalTarget)
-    openModal(modal)
-  })
+openModalButton.addEventListener("click", () => {
+  const modal = document.getElementById("modal")
+  openModal(modal)
 })
 
 overlay.addEventListener("click", () => {
-  const modals = document.querySelectorAll(".modal.active")
-  modals.forEach((modal) => {
-    closeModal(modal)
-  })
+  const modal = document.querySelector(".modal.active")
+  closeModal(modal)
 })
 
-closeModalButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = button.closest(".modal")
-    closeModal(modal)
-  })
+closeModalButton.addEventListener("click", () => {
+  const modal = document.getElementById("modal")
+  closeModal(modal)
 })
 
 function openModal(modal) {

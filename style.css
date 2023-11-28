@@ -34,6 +34,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
+  /* center and not visible at first */
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   border: 1px solid black;
@@ -46,6 +47,7 @@ body {
 }
 
 .modal.active {
+  /* center and visible when active */
   transform: translate(-50%, -50%) scale(1);
 }
 
@@ -75,21 +77,24 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  /* when not visible, it will not have any mouse event, like it doesn't exist */
   pointer-events: none;
 }
 
 #overlay.active {
   opacity: 1;
+  /* activate the overlay layer */
   pointer-events: all;
 }
 
 #status-bar {
   display: flex;
   color: #dfebf3;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 5rem;
   gap: 5vw;
+  min-width: 45vw;
 }
 
 .title {
@@ -101,6 +106,7 @@ body {
 .score {
   font-size: 1.5rem;
   flex: 2;
+  text-align: end;
 }
 
 #score {
