@@ -10,6 +10,40 @@
     <script src="/js/script.js" type="module"></script>
   </head>
   <body>
+    <div id="status-bar">
+      <div class="title">2048</div>
+      <button data-modal-target="#modal" class="modal-btn">?</button>
+
+      <div class="score">Score <span id="score"></span></div>
+
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title">How to play?</div>
+          <button data-close-button class="modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          1. Combine tiles of the same number in an attempt to create a tile
+          with the value 2048.
+          <br />
+          <br />
+          2. Pressing the arrow keys the game board will move all tiles in the
+          direction of the key pressed. After all the tiles are done moving a
+          new tile with the value of 2 or 4 will be created in a random empty
+          cell.
+          <br />
+          <br />
+
+          3. Two tiles with the same number will merge when they collide to
+          create a single tile with double the value.
+          <br />
+          <br />
+
+          4. The game is over when there are no valid ways for you to move the
+          tiles.
+        </div>
+      </div>
+      <div id="overlay"></div>
+    </div>
     <div id="game-board"></div>
   </body>
 </html>

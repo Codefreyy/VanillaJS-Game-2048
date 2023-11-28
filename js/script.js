@@ -4,6 +4,11 @@ import Tile from "./Tile.js"
 const gameBoard = document.getElementById("game-board")
 const grid = new Grid(gameBoard)
 
+// scoreboard
+let max = 2
+const score = document.getElementById("score")
+score.textContent = max
+
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 setupInput()
@@ -57,15 +62,16 @@ async function handleInput(e) {
   const newTile = new Tile(gameBoard)
   grid.randomEmptyCell().tile = newTile
 
-  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
-    let max = 2
-    grid.cellsByColumn.forEach((g) => {
-      g.forEach((c) => {
-        if (c.tile && c.tile.value > max) {
-          max = c.tile.value
-        }
-      })
+  grid.cellsByColumn.forEach((g) => {
+    g.forEach((c) => {
+      if (c.tile && c.tile.value > max) {
+        max = c.tile.value
+        score.textContent = max
+      }
     })
+  })
+
+  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     newTile.waitForTransition(true).then(() => {
       alert(`Sorry, you lose. The score is ${max}. Keep up!`)
     })
@@ -148,4 +154,42 @@ function slideTiles(cells) {
       return promises
     })
   )
+}
+
+// modal
+const openModalButtons = document.querySelectorAll("[data-modal-target]")
+const closeModalButtons = document.querySelectorAll("[data-close-button]")
+const overlay = document.getElementById("overlay")
+
+openModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener("click", () => {
+  const modals = document.querySelectorAll(".modal.active")
+  modals.forEach((modal) => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal")
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add("active")
+  overlay.classList.add("active")
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove("active")
+  overlay.classList.remove("active")
 }
